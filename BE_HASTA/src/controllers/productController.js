@@ -129,10 +129,39 @@ const nonAktipproduct = async (req = request, res = response) => {
     });
   }
 };
+
+//get category produck and id
+const getCategoriProduct = async (req = request, res = response) => {
+  try {
+    const { id } = await req.query;
+
+    const findProduct = await db("products").select("id");
+    const resultId = findProduct.map((e) => e.id);
+
+    const getData =
+      id === "all"
+        ? await db("products")
+            .whereIn("id", resultId)
+            .orderBy("category", "asc")
+        : await db("products").where("id", id);
+
+    res.status(200).json({
+      status: true,
+      message: "data success",
+      query: getData,
+    });
+  } catch (error) {
+    res.status(500).json({
+      succes: false,
+      error: error.message,
+    });
+  }
+};
 module.exports = {
   getAllProduct,
   createProduct,
   getDetailProduct,
   editProduct,
   nonAktipproduct,
+  getCategoriProduct,
 };
