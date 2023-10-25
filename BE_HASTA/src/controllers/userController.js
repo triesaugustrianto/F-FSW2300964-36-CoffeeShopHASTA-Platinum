@@ -195,10 +195,32 @@ const getDetailUser = async (req = request, res = response) => {
 //get all users
 const getAllUsers = async (req = request, res = response) => {
   try {
-    const getData = await db("users")
-      .select("*")
-      .where("isConfirm", true)
-      .orderBy("name", "asc");
+    const { active } = await req.query;
+    const getData =
+      active === "all"
+        ? await db("users")
+            .select(
+              "id",
+              "name",
+              "email",
+              "phone",
+              "address",
+              "role",
+              "isConfirm"
+            )
+            .orderBy("name", "asc")
+        : await db("users")
+            .select(
+              "id",
+              "name",
+              "email",
+              "phone",
+              "address",
+              "role",
+              "isConfirm"
+            )
+            .where("isConfirm", active)
+            .orderBy("name", "asc");
     res.status(200).json({
       status: true,
       message: "data is displayed successfully",

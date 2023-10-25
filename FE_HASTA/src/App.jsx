@@ -28,7 +28,15 @@ import OrderTable from "./pages/admin/order/order-table.component";
 import ProductTable from "./pages/admin/product/product-table.component";
 import { UserDsb } from "./pages/admin/User/user";
 import RegisterAdmin from "./pages/landing/RegisterAdmin";
-import { Header } from "./components";
+import { Header, NavbarCms, Side } from "./components";
+import {
+  CreateProductCms,
+  Dashboard,
+  EditProductCms,
+  HomeCms,
+  ProductCms,
+  UserCms,
+} from "./pages/cms";
 
 function App() {
   const token = sessionStorage.getItem("token");
@@ -68,24 +76,49 @@ function App() {
     );
   }
 
+  // //? =============== ROUTE PATH ADMIN ===================
+  // if (isLogin && token) {
+  //   return (
+  //     <>
+  //       {/* ROUTES LANDING DASHBOARD */}
+  //       <Routes>
+  //         <Route path="/dsb" element={<Navigation />}>
+  //           <Route path="product" element={<ProductTable />} />
+  //           <Route path="order" element={<OrderTable />} />
+  //           <Route path="user" element={<UserDsb />} />
+  //           <Route path="order" element={<OrderTable />} />
+  //           <Route path="user" element={<UserDsb />} />
+  //           <Route path="product/edit/:id" element={<EditProduct />} />
+  //           <Route path="product/create" element={<CreateProduct />} />
+  //           edit
+  //         </Route>
+  //       </Routes>
+  //     </>
+  //   );
+  // }
+
   //? =============== ROUTE PATH ADMIN ===================
   if (isLogin && token) {
     return (
-      <>
-        {/* ROUTES LANDING DASHBOARD */}
-        <Routes>
-          <Route path="/dsb" element={<Navigation />}>
-            <Route path="product" element={<ProductTable />} />
-            <Route path="order" element={<OrderTable />} />
-            <Route path="user" element={<UserDsb />} />
-            <Route path="order" element={<OrderTable />} />
-            <Route path="user" element={<UserDsb />} />
-            <Route path="product/edit/:id" element={<EditProduct />} />
-            <Route path="product/create" element={<CreateProduct />} />
-            edit
-          </Route>
-        </Routes>
-      </>
+      <div className="d-flex">
+        <div className="w-auto position-fixed z-3">
+          <Side />
+        </div>
+        <div className="z-2">
+          <NavbarCms />
+        </div>
+        <div className="container-fluid">
+          <Routes>
+            <Route path="/adm" element={<Dashboard />}>
+              <Route path="" element={<HomeCms />} />
+              <Route path="user" element={<UserCms />} />
+              <Route path="produk" element={<ProductCms />} />
+              <Route path="product/create" element={<CreateProductCms />} />
+              <Route path="product/edit/:id" element={<EditProductCms />} />
+            </Route>
+          </Routes>
+        </div>
+      </div>
     );
   }
 

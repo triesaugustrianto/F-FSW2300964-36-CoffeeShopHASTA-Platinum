@@ -45,7 +45,7 @@ html {
 }
 
 /* Navbar */
-
+/* 
 nav {
   display: flex;
   align-items: center;
@@ -57,7 +57,6 @@ nav {
   right: 0;
   z-index: 100;
   height: 96px;
-  /* width: 100vh; */
 }
 nav .logo {
   font-size: 18px;
@@ -145,17 +144,17 @@ nav .login button:active {
   font-size: 16px;
   border-radius: 8px;
   border: 1px solid #006a68;
-}
+} */
 
 /* Header */
-.header {
+/* .header {
   margin: 177px 178px 59px;
   color: #000000;
-}
+} */
 
 /* Sidebar */
 
-.sidebar-content {
+/* .sidebar-content {
   width: 185px;
   display: flex;
   box-sizing: border-box;
@@ -214,7 +213,7 @@ nav .login button:active {
 }
 .sidebar-content .list-item a:hover {
   color: #006a68;
-}
+} */
 .menu-content {
   display: flex;
   /* gap: 73px; */
@@ -374,4 +373,8 @@ nav .login button:active {
   height: 24px;
   color: #d9d9d9;
   background-color: transparent;
+}
+
+.active {
+  font-weight: bold;
 }

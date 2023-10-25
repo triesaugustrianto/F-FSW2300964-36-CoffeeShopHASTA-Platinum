@@ -91,7 +91,7 @@ function OrderTable() {
               </tr>
               {/* ))} */}
             </tbody>
-          </table>
+          </table>{" "}
         </div>
       </div>
     </div>
@@ -99,4 +99,3 @@ function OrderTable() {
 }
 
 export default OrderTable;
-

@@ -1,3 +1,4 @@
+import { BreadCum } from "./BreadCum";
 import { CardProduct } from "./CardProduct";
 import Catalog from "./Catalog";
 import { Errors } from "./Errors";
@@ -8,10 +9,13 @@ import { Loading } from "./Loading";
 import { MenuUser } from "./MenuUser";
 import { Modals } from "./Modals";
 import NavBar from "./NavBar";
+import { NavbarCms } from "./NavbarCms";
 import { NotFound } from "./NotFound";
 import { ProfilUpdate } from "./ProfilUpdate";
+import { Side } from "./Side";
 import SideBar from "./SideBar";
 import { Succes } from "./Succes";
+import { TheadUser } from "./TheadUser";
 
 export {
   NavBar,
@@ -27,5 +31,9 @@ export {
   CardProduct,
   Modals,
   ProfilUpdate,
-  FormProduct
+  FormProduct,
+  Side,
+  NavbarCms,
+  TheadUser,
+  BreadCum,
 };

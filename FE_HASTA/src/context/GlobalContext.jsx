@@ -8,10 +8,10 @@ export const SearchConsum = createContext();
 export const ProductConsum = createContext();
 
 export const GlobalContext = ({ children }) => {
-  const [query, setQuery] = useState("All");
+  const [query, setQuery] = useState("all");
   const [search, setSearch] = useState("");
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/products`,
+    `http://localhost:2000/api/productss`,
     fetcher
   );
 

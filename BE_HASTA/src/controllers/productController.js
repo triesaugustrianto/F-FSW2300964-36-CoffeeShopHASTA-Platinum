@@ -15,8 +15,12 @@ const getAllProduct = async (req = request, res = response) => {
     //find data
     const resultData =
       categories === "all"
-        ? await db("products").whereIn("category", resultProduct)
-        : await db("products").where("category", categories);
+        ? await db("products")
+            .where("statusProduct", true)
+            .whereIn("category", resultProduct)
+        : await db("products")
+            .where("statusProduct", true)
+            .where("category", categories);
     res.status(200).json({
       succes: true,
       query: resultData,
@@ -85,7 +89,7 @@ const getDetailProduct = async (req = request, res = response) => {
 const editProduct = async (req = request, res = response) => {
   try {
     const { id } = await req.params;
-    const { name, price, category, description } = await req.body;
+    const { name, price, category, description, active } = await req.body;
     const url = await uploadMinio(req.file.path, req.file.originalname);
 
     const updateData = await db("products")
@@ -96,6 +100,7 @@ const editProduct = async (req = request, res = response) => {
         category: category,
         description: description,
         image: url,
+        statusProduct: active === "true" ? true : false,
       })
       .returning(["name", "price", "category", "description", "image"]);
     res.status(201).json({
@@ -141,10 +146,50 @@ const getCategoriProduct = async (req = request, res = response) => {
     const getData =
       id === "all"
         ? await db("products")
+            .where("statusProduct", true)
             .whereIn("id", resultId)
             .orderBy("category", "asc")
-        : await db("products").where("id", id);
+        : await db("products").where("id", id).where("statusProduct", true);
 
+    res.status(200).json({
+      status: true,
+      message: "data success",
+      query: getData,
+    });
+  } catch (error) {
+    res.status(500).json({
+      succes: false,
+      error: error.message,
+    });
+  }
+};
+
+const getGroupproduct = async (req = request, res = response) => {
+  try {
+    const { categori } = await req.query;
+    const getData = await db("products")
+      .select("id", "name", "category")
+      .where("statusProduct", true)
+      .andWhere("category", categori)
+      .orderBy("name", "asc");
+
+    res.status(200).json({
+      status: true,
+      message: "data succes ",
+      query: getData,
+    });
+  } catch (error) {
+    res.status(500).json({
+      succes: false,
+      error: error.message,
+    });
+  }
+};
+
+//get product admin
+const getProductAdmin = async (req = request, res = response) => {
+  try {
+    const getData = await db("products").select("*").orderBy("category", "asc");
     res.status(200).json({
       status: true,
       message: "data success",
@@ -164,4 +209,6 @@ module.exports = {
   editProduct,
   nonAktipproduct,
   getCategoriProduct,
+  getGroupproduct,
+  getProductAdmin,
 };

@@ -24,8 +24,12 @@ function Login() {
             "ROLE",
             JSON.stringify(res.data.query["role"])
           );
-
+          sessionStorage.setItem(
+            "Name",
+            JSON.stringify(res.data.query["name"])
+          );
           sessionStorage.setItem("nav", "1");
+          sessionStorage.setItem("count", "1");
 
           toast.success("Login Sukses !", {
             position: toast.POSITION.TOP_CENTER,
@@ -38,7 +42,7 @@ function Login() {
             }, 1800);
           } else {
             setTimeout(() => {
-              window.location.href = "/dsb";
+              window.location.href = "/adm";
             }, 1800);
           }
         }
