@@ -22,27 +22,20 @@ import {
   PesananUser,
   Users,
 } from "./pages/user";
-<<<<<<< HEAD
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { CreateProduct, EditProduct } from "./pages/admin";
-=======
 import { useState } from "react";
 import { CreateProduct, Dashboard, EditProduct } from "./pages/admin";
->>>>>>> dcc2c0cd9044c52ef2cdc4ae6870c392feb2e165
 import Navigation from "./pages/admin/navigation/navigation.component";
 import ProductTable from "./pages/admin/product/product-table.component";
 import { UserDsb } from "./pages/admin/User/user";
-<<<<<<< HEAD
 import RegisterAdmin from "./pages/landing/RegisterAdmin";
-<<<<<<< HEAD
 import { Header } from "./components";
-=======
 import OrderNavbar from "./pages/admin/order/order-navbar.component";
 import CheckedOrder from "./pages/admin/order/order-table-checked.component";
 import AllOrder from "./pages/admin/order/order-table-all.component";
 import OrderDone from "./pages/admin/order/order-table-done.component";
->>>>>>> dcc2c0cd9044c52ef2cdc4ae6870c392feb2e165
-=======
+
 import { Header, NavbarCms, Side } from "./components";
 import {
   CheckedOrderCms,
@@ -57,34 +50,9 @@ import {
   ReportCms,
   UserCms,
 } from "./pages/cms";
->>>>>>> fe3d71e
 
 function App() {
   const [isLogin, setIsLogin] = useState(true);
-
-  const [isAdmin, setIsAdmin] = useState(true);
-  if (isAdmin) {
-    return (
-      <>
-        {/* ROUTES LANDING DASHBOARD */}
-
-        <Routes>
-          <Route path="/dsb" element={<Navigation />}>
-            <Route path="product" element={<ProductTable />} />
-            <Route path="user" element={<UserDsb />} />
-            <Route path="order" element={<OrderNavbar />}>
-              <Route path="" element={<AllOrder />} />
-              <Route path="checked" element={<CheckedOrder />} />
-              <Route path="done" element={<OrderDone />} />
-            </Route>
-            <Route path="product/edit/:id" element={<EditProduct />} />
-            <Route path="product/create" element={<CreateProduct />} />
-            edit
-          </Route>
-        </Routes>
-      </>
-    );
-  }
 
   if (!isLogin) {
     return (
@@ -124,7 +92,6 @@ function App() {
       </>
     );
   }
-<<<<<<< HEAD
 
   // //? =============== ROUTE PATH ADMIN ===================
   // if (isLogin && token) {
@@ -199,8 +166,6 @@ function App() {
       </Routes>
     </>
   );
-=======
->>>>>>> dcc2c0cd9044c52ef2cdc4ae6870c392feb2e165
 }
 
 export default App;
