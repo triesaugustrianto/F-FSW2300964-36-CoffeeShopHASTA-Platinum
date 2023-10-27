@@ -83,7 +83,6 @@ export const Checkout = () => {
             position: toast.POSITION.TOP_CENTER,
           });
         }
-        console.log(err);
       });
   };
 
@@ -95,7 +94,7 @@ export const Checkout = () => {
       setError("uang", { type: "required" }, { shouldFocus: true });
     }
   };
-
+  console.log(data);
   return (
     <div className="container">
       <ToastContainer />
@@ -138,7 +137,7 @@ export const Checkout = () => {
                                 type="text"
                                 className="form-control-plaintext "
                                 {...register(`transaksi.${idx}.keterangan`)}
-                                value={`${e.size}- ${e.sweet}`}
+                                value={`${e.size} / ${e.sweet} / ${e.availble}`}
                               />
                             </div>
                             <div className="card-text text-lowercase d-flex align-items-center ">

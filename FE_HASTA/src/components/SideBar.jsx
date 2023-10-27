@@ -8,26 +8,26 @@ import { QueryConsum } from "../context/GlobalContext";
 const SideBar = () => {
   const [query, setQuery] = useContext(QueryConsum);
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/product-group?categori=coffe`,
+    `http://localhost:2000/api/product-group?categori=Coffe`,
     fetcher
   );
   const { data: tea } = useSWR(
-    `http://localhost:2000/api/product-group?categori=tea`,
+    `http://localhost:2000/api/product-group?categori=Tea`,
     fetcher
   );
   const { data: blend } = useSWR(
-    `http://localhost:2000/api/product-group?categori=blend`,
+    `http://localhost:2000/api/product-group?categori=Blended`,
     fetcher
   );
   const { data: other } = useSWR(
-    `http://localhost:2000/api/product-group?categori=blend`,
+    `http://localhost:2000/api/product-group?categori=Others`,
     fetcher
   );
   if (error) return <Errors />;
   if (isLoading) return <Loading />;
 
   return (
-    <div className="container-fluid">
+    <div className="container-fluid" style={{ width: "250px" }}>
       <div className="container  ">
         <ul className="nav flex-column">
           <h5
@@ -43,7 +43,7 @@ const SideBar = () => {
               return (
                 <li className="nav-item" key={b.id}>
                   <button className="btn" onClick={() => setQuery(b.id)}>
-                    <span className="">{b.name}</span>
+                    {b.name}
                   </button>
                 </li>
               );

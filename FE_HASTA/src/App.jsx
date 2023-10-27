@@ -2,6 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import {
   About,
+  ConfimAkun,
   ForgotPassword,
   Home,
   Login,
@@ -30,11 +31,16 @@ import { UserDsb } from "./pages/admin/User/user";
 import RegisterAdmin from "./pages/landing/RegisterAdmin";
 import { Header, NavbarCms, Side } from "./components";
 import {
+  CheckedOrderCms,
   CreateProductCms,
   Dashboard,
+  DoneOrderCms,
   EditProductCms,
   HomeCms,
+  NewOrderCms,
+  OrderCms,
   ProductCms,
+  ReportCms,
   UserCms,
 } from "./pages/cms";
 
@@ -107,14 +113,22 @@ function App() {
         <div className="z-2">
           <NavbarCms />
         </div>
-        <div className="container-fluid">
+        <div className="container-fluid pb-5">
           <Routes>
             <Route path="/adm" element={<Dashboard />}>
               <Route path="" element={<HomeCms />} />
               <Route path="user" element={<UserCms />} />
+
               <Route path="produk" element={<ProductCms />} />
               <Route path="product/create" element={<CreateProductCms />} />
               <Route path="product/edit/:id" element={<EditProductCms />} />
+              <Route path="order" element={<OrderCms />}>
+                <Route path="" element={<NewOrderCms />} />
+                <Route path="check" element={<CheckedOrderCms />} />
+                <Route path="done" element={<DoneOrderCms />} />
+              </Route>
+              <Route path="report" element={<ReportCms />} />
+              <Route path="profil" element={<AkunUser />} />
             </Route>
           </Routes>
         </div>
@@ -136,6 +150,7 @@ function App() {
         <Route path="/admin" element={<RegisterAdmin />} />
         <Route path="/forgot" element={<ForgotPassword />} />
         <Route path="/password/:id" element={<UpdatePassword />} />
+        <Route path="/confirm/:id" element={<ConfimAkun />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

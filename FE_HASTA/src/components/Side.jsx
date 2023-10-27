@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import {
-  Building,
-  CarFront,
   Cart,
   Clipboard2Data,
-  Coin,
   CupStraw,
-  InfoCircle,
   Palette,
   People,
   Person,
-  WrenchAdjustableCircle,
 } from "react-bootstrap-icons";
 import { logo } from "../assets";
 export const Side = () => {
@@ -83,7 +78,7 @@ export const Side = () => {
             className={active === 6 ? "active nav-item mt-3 " : "nav-item mt-3"}
             onClick={(e) => setActive(6)}
           >
-            <Link to={"/adm/akun"} className="nav-link text-success">
+            <Link to={"/adm/profil"} className="nav-link text-success">
               <Person className="me-3" />
               <span>Profil</span>
             </Link>

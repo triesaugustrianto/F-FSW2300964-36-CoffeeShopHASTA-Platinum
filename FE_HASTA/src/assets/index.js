@@ -9,6 +9,9 @@ import regist from "./image/regist.svg";
 import not from "./image/not.svg";
 import login from "./icon/login.gif";
 import avatar from "./icon/man.png";
+import confirm from "./icon/confrm.gif";
+import sales from "./icon/sales.gif";
+import user from "./icon/user.gif";
 export {
   error,
   loading,
@@ -21,4 +24,7 @@ export {
   not,
   login,
   avatar,
+  confirm,
+  sales,
+  user,
 };

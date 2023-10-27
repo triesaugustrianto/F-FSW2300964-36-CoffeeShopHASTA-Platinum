@@ -30,6 +30,7 @@ function Login() {
           );
           sessionStorage.setItem("nav", "1");
           sessionStorage.setItem("count", "1");
+          sessionStorage.setItem("act", "1");
 
           toast.success("Login Sukses !", {
             position: toast.POSITION.TOP_CENTER,

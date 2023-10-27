@@ -1,16 +1,42 @@
 import React, { useContext, useState } from "react";
 import { useNavigate } from "react-router";
-import { BreadCum, Errors, Loading } from "../../../components";
-
+import { BreadCum, Modals } from "../../../components";
+import { ToastContainer, toast } from "react-toastify";
 import { format } from "../../../fetch/format";
 import { ProductConsum } from "../../../context/GlobalContext";
+import { useForm } from "react-hook-form";
+import axios from "axios";
 
 export const ProductCms = () => {
+  const { handleSubmit } = useForm();
   const [data] = useContext(ProductConsum);
   const navigate = useNavigate();
-
+  const [id, setId] = useState(0);
+  const Submits = () => {
+    axios
+      .delete(`http://localhost:2000/api/product/delete/${id}`)
+      .then((res) => {
+        if (res.status === 200) {
+          toast.success("Success delete product !", {
+            position: toast.POSITION.TOP_CENTER,
+            autoClose: 1200,
+          });
+          setTimeout(() => {
+            window.location.href = "/adm/produk";
+          }, 1500);
+        }
+      })
+      .catch((err) => {
+        if (err.response.status === 500) {
+          toast.error("Error Notification !", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        }
+      });
+  };
   return (
     <div className="container-fluid">
+      <ToastContainer />
       <BreadCum pg1={"Product"} pg2={"list"} />
       <div className="container d-flex justify-content-end gap-3 mb-4">
         <button
@@ -51,18 +77,37 @@ export const ProductCms = () => {
                     {e.statusProduct ? "Active" : "Discontinue"}
                   </span>
                 </div>
-                <div className="card-body d-flex justify-content-center">
+                <div className="card-body d-flex justify-content-evenly">
                   <button
-                    className="btn btn-sm btn-outline-success px-5"
+                    className="btn btn-sm btn-outline-success px-4"
                     onClick={() => navigate(`/adm/product/edit/${e.id}`)}
                   >
                     Edit
                   </button>
+                  {e.statusProduct ? (
+                    <button
+                      className="btn btn-sm btn-outline-danger px-3"
+                      data-bs-toggle="modal"
+                      data-bs-target="#del"
+                      onClick={() => setId(e.id)}
+                    >
+                      Delete
+                    </button>
+                  ) : null}
                 </div>
               </div>
             );
           })}
       </div>
+      <Modals
+        title={"sure delete the product ?"}
+        id={"del"}
+        content={
+          <form onSubmit={handleSubmit(Submits)}>
+            <button className="btn btn-danger w-100">Delete</button>
+          </form>
+        }
+      />
     </div>
   );
 };

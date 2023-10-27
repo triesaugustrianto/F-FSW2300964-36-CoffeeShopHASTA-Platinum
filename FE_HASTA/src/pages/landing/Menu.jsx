@@ -22,7 +22,7 @@ export default function Menu() {
         <div className="">
           <SideBar />
         </div>
-        <div className="d-flex justify-content-evenly flex-wrap gap-3 ms-4 ">
+        <div className="d-flex justify-content-evenly flex-wrap gap-3 ms-4 mb-5">
           {data &&
             data.map((e) => {
               return (

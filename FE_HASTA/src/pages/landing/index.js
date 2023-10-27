@@ -1,4 +1,5 @@
 import About from "./About";
+import { ConfimAkun } from "./ConfimAkun";
 import { ForgotPassword } from "./ForgotPassword";
 import Home from "./Home";
 import Login from "./Login";
@@ -16,4 +17,5 @@ export {
   SignUp,
   ForgotPassword,
   UpdatePassword,
+  ConfimAkun,
 };
