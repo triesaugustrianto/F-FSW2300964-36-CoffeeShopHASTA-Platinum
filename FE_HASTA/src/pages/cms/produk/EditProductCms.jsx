@@ -1,20 +1,13 @@
 import React from "react";
-import { useForm } from "react-hook-form";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
+import { Errors, FormProduct, Loading } from "../../../components";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 import useSWR from "swr";
 import { fetcher } from "../../../fetch";
-import { Errors, FormProduct, Loading } from "../../../components";
-import { ToastContainer, toast } from "react-toastify";
-import axios from "axios";
-// modul
-export const EditProduct = () => {
-  //   const { id } = useParams();
-  const id = parseInt(1);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+export const EditProductCms = () => {
+  const { id } = useParams();
+  const navigate = useNavigate();
   //get data
   const { isLoading, error, data } = useSWR(
     `http://localhost:2000/api/product/${id}`,
@@ -37,7 +30,6 @@ export const EditProduct = () => {
       product[key] = value;
     });
 
-
     axios
       .put(`http://localhost:2000/api/product/${id}`, product, {
         headers: {
@@ -53,7 +45,7 @@ export const EditProduct = () => {
             autoClose: 1200,
           });
           setTimeout(() => {
-            window.location.href = "/dsb/product";
+            window.location.href = "/adm/produk";
           }, 1500);
         }
       })
@@ -65,6 +57,7 @@ export const EditProduct = () => {
         }
       });
   };
+
   return (
     <div className="container-fluid">
       <ToastContainer />
@@ -80,7 +73,7 @@ export const EditProduct = () => {
               dfdesc={e.description}
               Submits={Submits}
               dfimg={false}
-              isUpdate={false}
+              back={() => navigate(-1)}
             />
           );
         })}

@@ -52,7 +52,7 @@ const createUsers = async (req = request, res = response) => {
           email: email,
           address: address,
           password: hashPassword,
-          role: role === false ? "user" : role,
+          role: !role ? "user" : role,
         })
         .returning(["name", "phone", "email", "address"]);
       transporter.sendMail({
@@ -61,7 +61,7 @@ const createUsers = async (req = request, res = response) => {
         subject: "Confirmation Account",
         html: `
                <p>Welcome : ${email}</p>
-               <p>You can confirm your account email through the link below: <span><a href="http://app-citrapersada.net:2000/api/users/confirm/${id}" target=_blank>http://app-citrapersada.net:2000/api/users</a></span></p>
+               <p>You can confirm your account email through the link below: <span><a href="http://localhost:5173/confirm/${id}" target=_blank>http://localhost:5173/confirm</a></span></p>
                 </hr>
                 ©${new Date().getFullYear()}IT_Citra-Persada-Infrastruktur
       `,
@@ -195,10 +195,32 @@ const getDetailUser = async (req = request, res = response) => {
 //get all users
 const getAllUsers = async (req = request, res = response) => {
   try {
-    const getData = await db("users")
-      .select("*")
-      .where("isConfirm", true)
-      .orderBy("name", "asc");
+    const { active } = await req.query;
+    const getData =
+      active === "all"
+        ? await db("users")
+            .select(
+              "id",
+              "name",
+              "email",
+              "phone",
+              "address",
+              "role",
+              "isConfirm"
+            )
+            .orderBy("name", "asc")
+        : await db("users")
+            .select(
+              "id",
+              "name",
+              "email",
+              "phone",
+              "address",
+              "role",
+              "isConfirm"
+            )
+            .where("isConfirm", active)
+            .orderBy("name", "asc");
     res.status(200).json({
       status: true,
       message: "data is displayed successfully",
@@ -307,6 +329,22 @@ const loginUser = async (req = request, res = response) => {
   }
 };
 
+//count user active
+const countUser = async (req = request, res = response) => {
+  try {
+    const contData = await db("users").where("isConfirm", true).count();
+    res.status(200).json({
+      status: true,
+      message: "data success ",
+      query: contData,
+    });
+  } catch (error) {
+    res.status(500).json({
+      succes: false,
+      error: error.message,
+    });
+  }
+};
 module.exports = {
   createUsers,
   confirmUsers,
@@ -316,4 +354,5 @@ module.exports = {
   getAllUsers,
   updateProfil,
   loginUser,
+  countUser,
 };

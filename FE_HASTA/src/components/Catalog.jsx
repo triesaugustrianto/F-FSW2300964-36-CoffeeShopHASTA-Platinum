@@ -2,8 +2,7 @@ import addtocart from "../assets/icon/Add shopping cart.svg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
 
-const Catalog = ({ name, desc, price, add, like, img }) => {
-  
+const Catalog = ({ name, desc, price, like, img, normal }) => {
   return (
     <div className="products">
       <div className="box">
@@ -24,13 +23,21 @@ const Catalog = ({ name, desc, price, add, like, img }) => {
               </h3>
               <div className="promo">
                 <h4>10%</h4>
-                <span>RP40.000</span>
+                <span>Rp {normal}</span>
               </div>
               <div className="action">
-                <a className="cart-border" onClick={add}>
+                <a
+                  className="cart-border"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addChart"
+                >
                   <img src={addtocart} className="add-to-cart" />
                 </a>
-                <a className="wishlist-border" onClick={like}>
+                <a
+                  className="wishlist-border"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addChart"
+                >
                   <FontAwesomeIcon className="wishlist" icon={faHeart} />
                 </a>
               </div>
@@ -38,11 +45,7 @@ const Catalog = ({ name, desc, price, add, like, img }) => {
           </div>
         </div>
       </div>
-
-      
     </div>
-
-    
   );
 };
 

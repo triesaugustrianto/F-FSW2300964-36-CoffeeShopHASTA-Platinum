@@ -92,11 +92,15 @@ function AllOrder() {
                 </td>
               </tr>
             </tbody>
-          </table>
+          </table>{" "}
         </div>
       </div>
     </div>
   );
 }
 
+<<<<<<< HEAD:FE_HASTA/src/pages/admin/order/order-table-all.component.jsx
 export default AllOrder;
+=======
+export default OrderTable;
+>>>>>>> fe3d71e:FE_HASTA/src/pages/admin/order/order-table.component.jsx

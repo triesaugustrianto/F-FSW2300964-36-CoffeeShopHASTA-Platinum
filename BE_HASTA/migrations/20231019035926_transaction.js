@@ -11,9 +11,9 @@ exports.up = function (knex) {
     table.bigInteger("kembalian").notNullable();
     table.boolean("isConfirm").defaultTo(false);
     table.boolean("isDone").defaultTo(false);
+    table.boolean("isPickup").defaultTo(false);
     table.string("checked");
     table.timestamp("createdAt").defaultTo(knex.fn.now());
-    
   });
 };
 
@@ -22,5 +22,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable("transaction")
+  return knex.schema.dropTable("transaction");
 };

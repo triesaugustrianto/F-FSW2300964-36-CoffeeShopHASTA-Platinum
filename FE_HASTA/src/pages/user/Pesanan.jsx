@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import useSWR from "swr";
 import { fetchToken } from "../../fetch";
-import { Errors, Loading } from "../../components";
-import { nulls } from "../../assets";
+import { Errors, Loading, Nulls } from "../../components";
 import moment from "moment/moment";
 import { format } from "../../fetch/format";
 import DatePicker from "react-datepicker";
@@ -15,6 +14,7 @@ export const Pesanan = () => {
   );
   if (error) return <Errors />;
   if (isLoading) return <Loading />;
+
   const handlePesan = () => {
     window.location.href = "/user/menu";
     sessionStorage.setItem("nav", "2");
@@ -91,14 +91,7 @@ export const Pesanan = () => {
             })}
         </div>
       ) : (
-        <div className="position-absolute top-50 start-50 translate-middle bg-secondary ">
-          <div className="container">
-            <div className="d-flex flex-column align-items-center">
-              <img src={nulls} alt="loading" style={{ width: "150px" }} />
-              <p className="">Opps data tidak tersedia</p>
-            </div>
-          </div>
-        </div>
+        <Nulls ket="Opps data tidak tersedia" click={handlePesan} />
       )}
     </div>
   );

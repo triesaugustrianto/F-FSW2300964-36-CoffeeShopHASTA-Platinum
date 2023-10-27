@@ -7,4 +7,24 @@ import coffeTime from "./image/come.gif";
 import logo from "./image/logo.png";
 import regist from "./image/regist.svg";
 import not from "./image/not.svg";
-export { error, loading, nulls, succes, coffe, coffeTime, logo, regist, not };
+import login from "./icon/login.gif";
+import avatar from "./icon/man.png";
+import confirm from "./icon/confrm.gif";
+import sales from "./icon/sales.gif";
+import user from "./icon/user.gif";
+export {
+  error,
+  loading,
+  nulls,
+  succes,
+  coffe,
+  coffeTime,
+  logo,
+  regist,
+  not,
+  login,
+  avatar,
+  confirm,
+  sales,
+  user,
+};

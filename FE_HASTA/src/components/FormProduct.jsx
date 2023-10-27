@@ -1,14 +1,15 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { ExclamationCircle } from "react-bootstrap-icons";
+import { ArrowLeft, ExclamationCircle } from "react-bootstrap-icons";
 export const FormProduct = ({
   title = "Create Product",
   dfname,
   dfprice,
   dfcategory,
   dfdesc,
-
+  back,
   Submits,
+  isUpdate,
 }) => {
   const {
     register,
@@ -17,6 +18,13 @@ export const FormProduct = ({
   } = useForm();
   return (
     <div className="card px-5 py-5">
+      <span
+        className="fw-bold fs-4 text-danger"
+        style={{ cursor: "pointer" }}
+        onClick={back}
+      >
+        <ArrowLeft />
+      </span>
       <h4 className="mb-4 text-center ">{title}</h4>
       <form className="row g-3" onSubmit={handleSubmit(Submits)}>
         <div className="col-md-6">
@@ -108,6 +116,21 @@ export const FormProduct = ({
             </div>
           )}
         </div>
+        {!isUpdate && (
+          <>
+            <div className="mb-3 form-check">
+              <input
+                type="checkbox"
+                className="form-check-input"
+                defaultValue={true}
+                {...register("active")}
+              />
+              <label className="form-check-label" htmlFor="exampleCheck1">
+                Active
+              </label>
+            </div>
+          </>
+        )}
         <div className="col-12">
           <button type="submit" className="btn btn-success w-100 mt-4">
             Submit
