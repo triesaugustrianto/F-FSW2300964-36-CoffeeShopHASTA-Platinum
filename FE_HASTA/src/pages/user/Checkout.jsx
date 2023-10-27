@@ -94,7 +94,7 @@ export const Checkout = () => {
       setError("uang", { type: "required" }, { shouldFocus: true });
     }
   };
-  console.log(data);
+
   return (
     <div className="container">
       <ToastContainer />

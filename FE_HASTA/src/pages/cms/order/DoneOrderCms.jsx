@@ -63,6 +63,7 @@ export const DoneOrderCms = () => {
           });
           setTimeout(() => {
             window.location.href = "/adm/order/done";
+            sessionStorage.setItem("act", "3");
           }, 1500);
         }
       })
@@ -139,6 +140,7 @@ export const DoneOrderCms = () => {
                           data-bs-toggle="modal"
                           data-bs-target="#pickup"
                           onClick={() => handleCheck(e.id)}
+                          disabled={e.isPickup}
                         >
                           {e.isPickup ? <Check2All /> : <Check2Circle />}
                         </button>

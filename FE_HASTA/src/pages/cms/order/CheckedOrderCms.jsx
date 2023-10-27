@@ -63,6 +63,7 @@ export const CheckedOrderCms = () => {
           });
           setTimeout(() => {
             window.location.href = "/adm/order/done";
+            sessionStorage.setItem("act", "2");
           }, 1500);
         }
       })
