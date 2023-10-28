@@ -21,7 +21,7 @@ export const Pesanan = () => {
     window.location.href = "/user/menu";
     sessionStorage.setItem("nav", "2");
   };
-
+  console.log(data);
   return (
     <div className="container-fluid">
       <div className="container d-flex flex-column gap-2 mb-5">
@@ -60,15 +60,15 @@ export const Pesanan = () => {
                         "MM-DD-YY"
                       )}`}
                       cs={e.checked}
-                      produk={e.transaksi.map((i) => {
+                      produk={e.transaksi.map((u) => {
                         return (
                           <div
-                            className="d-flex justify-content-between"
-                            key={i.id}
+                            key={u.id}
+                            className="d-flex justify-content-between "
                           >
-                            <span>{i.name}</span>
-                            <span>{i.qty}</span>
-                            <span>{i.keterangan}</span>
+                            <span>{u.name}</span>
+                            <span>{u.qty}</span>
+                            <span>{u.keterangan}</span>
                           </div>
                         );
                       })}

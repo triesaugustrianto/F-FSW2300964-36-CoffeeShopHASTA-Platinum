@@ -21,6 +21,7 @@ const createTransaksi = async (req = request, res = response) => {
             ...item,
             id_transaksi: id[0].id,
           }));
+
           return trx("items")
             .insert(items)
             .returning(["name", "qty", "keterangan"]);
