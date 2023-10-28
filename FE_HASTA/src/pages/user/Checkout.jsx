@@ -153,6 +153,7 @@ export const Checkout = () => {
                               Rp {format(e.price)}
                             </p>
                             <button
+                              type="button"
                               className="btn btn-outline-danger fs-6"
                               onClick={() => handleDelete(e.id)}
                             >

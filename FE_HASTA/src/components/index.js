@@ -22,7 +22,8 @@ import SideBar from "./SideBar";
 import { Succes } from "./Succes";
 import { TheadOrder } from "./TheadOrder";
 import { TheadUser } from "./TheadUser";
-
+import { CardProductActive } from "./CardProductActive.jsx";
+import { Struk } from "./Struk";
 export {
   NavBar,
   Header,
@@ -48,4 +49,6 @@ export {
   CradUserActive,
   CardSales,
   NewOrder,
+  CardProductActive,
+  Struk,
 };

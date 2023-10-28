@@ -202,6 +202,23 @@ const getProductAdmin = async (req = request, res = response) => {
     });
   }
 };
+
+//count product
+const getCountProduct = async (req = request, res = response) => {
+  try {
+    const contData = await db("products").where("statusProduct", true).count();
+    res.status(200).json({
+      status: true,
+      message: "data success ",
+      query: contData,
+    });
+  } catch (error) {
+    res.status(500).json({
+      succes: false,
+      error: error.message,
+    });
+  }
+};
 module.exports = {
   getAllProduct,
   createProduct,
@@ -211,4 +228,5 @@ module.exports = {
   getCategoriProduct,
   getGroupproduct,
   getProductAdmin,
+  getCountProduct,
 };

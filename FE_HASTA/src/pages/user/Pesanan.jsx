@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import useSWR from "swr";
 import { fetchToken } from "../../fetch";
-import { Errors, Loading, Nulls } from "../../components";
+import { Errors, Loading, Nulls, Struk } from "../../components";
 import moment from "moment/moment";
 import { format } from "../../fetch/format";
 import DatePicker from "react-datepicker";
+import { usePDF } from "react-to-pdf";
 
 export const Pesanan = () => {
+  const { toPDF, targetRef } = usePDF({ filename: "receipt.pdf" });
   const [startDate, setStartDate] = useState(new Date());
   const { data, isLoading, error } = useSWR(
     `http://localhost:2000/api/transaksi-user?day=${startDate}`,
@@ -35,57 +37,56 @@ export const Pesanan = () => {
           {data &&
             data.map((e) => {
               return (
-                <div className="card text-center my-3" key={e.id}>
-                  <div className="card-header text-start position-relative">
-                    HST-{e.id}{" "}
-                    <span
-                      className="position-absolute top-0 end-0 bg-success text-white fw-medium shadow"
-                      style={{
-                        borderTopRightRadius: "6px",
-                        borderBottomLeftRadius: "12px",
-                        padding: "10px 10px",
-                        fontSize: "14px",
-                      }}
-                    >
-                      {e.isDone ? (
-                        "Selesai"
-                      ) : (
-                        <>{e.isConfirm ? "dibuat" : "menunggu"}</>
-                      )}
-                    </span>
-                  </div>
-                  <div className="card-body">
-                    <div className="">
-                      <div className="border-bottom border-success pb-2">
-                        {e.transaksi.map((i) => {
-                          return (
-                            <div
-                              className="d-flex justify-content-between"
-                              key={i.id}
-                            >
-                              <div className="">
-                                <div>{i.name}</div>
-                                <div style={{ fontSize: "12px" }}>
-                                  *{i.keterangan}
-                                </div>
-                              </div>
-                              <span>{i.qty}</span>
-                            </div>
-                          );
-                        })}
-                      </div>
-                      <div className="d-flex justify-content-between mt-3">
-                        <h6>Totals:</h6>
-                        <p>{format(e.totals)}</p>
-                      </div>
-                    </div>
-                  </div>
-                  <div
-                    className="card-footer text-body-secondary text-end"
-                    style={{ fontSize: "12px" }}
+                <div className="position-relative" key={e.id}>
+                  <span
+                    className="position-absolute top-0 end-0 bg-success text-white fw-medium shadow z-3"
+                    style={{
+                      borderTopRightRadius: "6px",
+                      borderBottomLeftRadius: "12px",
+                      padding: "10px 10px",
+                      fontSize: "14px",
+                    }}
                   >
-                    {moment(e.createdAt).format("ll")}
+                    {e.isDone ? (
+                      "Selesai"
+                    ) : (
+                      <>{e.isConfirm ? "dibuat" : "menunggu"}</>
+                    )}
+                  </span>
+                  <div className="" ref={targetRef}>
+                    <Struk
+                      date={moment(e.createdAt).format("lll")}
+                      no={`HST-${e.id}-${moment(e.createdAt).format(
+                        "MM-DD-YY"
+                      )}`}
+                      cs={e.checked}
+                      produk={e.transaksi.map((i) => {
+                        return (
+                          <div
+                            className="d-flex justify-content-between"
+                            key={i.id}
+                          >
+                            <span>{i.name}</span>
+                            <span>{i.qty}</span>
+                            <span>{i.keterangan}</span>
+                          </div>
+                        );
+                      })}
+                      to={format(e.totals)}
+                      cash={format(e.uang)}
+                      cange={format(e.kembalian)}
+                    />
                   </div>
+                  <span className="position-absolute bottom-0 start-0  text-white  z-3">
+                    {e.isDone ? (
+                      <button
+                        className="btn btn-sm btn-outline-danger"
+                        onClick={() => toPDF()}
+                      >
+                        Download
+                      </button>
+                    ) : null}
+                  </span>
                 </div>
               );
             })}

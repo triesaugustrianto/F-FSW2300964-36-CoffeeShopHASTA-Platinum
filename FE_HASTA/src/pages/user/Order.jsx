@@ -88,7 +88,7 @@ export const Order = () => {
                 />
                 <span
                   className="position-absolute  bg-transparent text-danger "
-                  style={{ top: "5px", left: "15px", cursor: "pointer" }}
+                  style={{ top: "5px", right: "0", cursor: "pointer" }}
                   onClick={() => navigate(`/user/menu`)}
                 >
                   <XSquareFill className="bg-transparent fw-bold text-danger" />{" "}

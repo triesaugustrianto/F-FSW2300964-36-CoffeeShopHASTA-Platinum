@@ -1,6 +1,7 @@
 import React from "react";
 import {
   BreadCum,
+  CardProductActive,
   CardSales,
   CradUserActive,
   NewOrder,
@@ -23,6 +24,10 @@ export const HomeCms = () => {
         <div className="">
           {/* user */}
           <CradUserActive />
+        </div>
+        <div className="">
+          {/* user */}
+          <CardProductActive />
         </div>
       </div>
     </div>
