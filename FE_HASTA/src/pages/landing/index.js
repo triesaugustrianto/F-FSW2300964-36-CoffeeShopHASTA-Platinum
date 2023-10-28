@@ -5,6 +5,7 @@ import Home from "./Home";
 import Login from "./Login";
 import Menu from "./Menu";
 import NotFound from "./NotFound";
+import RegisterAdmin from "./RegisterAdmin";
 import SignUp from "./SignUp";
 import { UpdatePassword } from "./UpdatePassword";
 
@@ -18,4 +19,5 @@ export {
   ForgotPassword,
   UpdatePassword,
   ConfimAkun,
+  RegisterAdmin,
 };
