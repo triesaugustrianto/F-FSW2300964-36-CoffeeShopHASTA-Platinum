@@ -12,6 +12,7 @@ import avatar from "./icon/man.png";
 import confirm from "./icon/confrm.gif";
 import sales from "./icon/sales.gif";
 import user from "./icon/user.gif";
+import active from "./icon/active.gif";
 export {
   error,
   loading,
@@ -27,4 +28,5 @@ export {
   confirm,
   sales,
   user,
+  active,
 };

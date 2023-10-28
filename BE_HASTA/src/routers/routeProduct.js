@@ -8,6 +8,7 @@ const {
   getCategoriProduct,
   getGroupproduct,
   getProductAdmin,
+  getCountProduct,
 } = require("../controllers/productController");
 const uploadProduct = require("../middleware/productUpload");
 const routeProduct = express.Router();
@@ -17,6 +18,7 @@ routeProduct.get("/api/productss", getProductAdmin);
 routeProduct.get("/api/product-categori", getCategoriProduct);
 routeProduct.get("/api/product-group", getGroupproduct);
 routeProduct.get("/api/product/:id", getDetailProduct);
+routeProduct.get("/api/product-count", getCountProduct);
 routeProduct.put(
   "/api/product/:id",
   uploadProduct.single("image"),
