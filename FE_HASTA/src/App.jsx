@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import {
@@ -135,4 +133,3 @@ function App() {
 }
 
 export default App;
->>>>>>> b812c8a

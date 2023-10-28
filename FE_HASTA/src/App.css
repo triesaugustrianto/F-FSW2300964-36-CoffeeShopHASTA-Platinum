@@ -375,12 +375,6 @@ nav .login button:active {
   background-color: transparent;
 }
 
-<<<<<<< HEAD
-/* Navbar Order-Admin Panel */
-.custom-navbar {
-  width: 100%;
-=======
 .active {
   font-weight: bold;
->>>>>>> fe3d71e
 }

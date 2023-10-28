@@ -15,7 +15,7 @@ export const OrderCms = () => {
     <div className="container-fluid">
       <div className="container d-flex justify-content-end">
         <ul className="nav ">
-          <li className={active === 1 ? "nav-item active" : "nav-item"}>
+          <li className={active === 1 ? "nav-item " : "nav-item"}>
             <NavLink
               className="nav-link text-success"
               aria-current="page"
@@ -25,7 +25,7 @@ export const OrderCms = () => {
               New Order
             </NavLink>
           </li>
-          <li className={active === 2 ? "nav-item active" : "nav-item"}>
+          <li className={active === 2 ? "nav-item " : "nav-item"}>
             <NavLink
               className="nav-link text-success"
               aria-current="page"
@@ -35,7 +35,7 @@ export const OrderCms = () => {
               Check Order
             </NavLink>
           </li>
-          <li className={active === 3 ? "nav-item active" : "nav-item"}>
+          <li className={active === 3 ? "nav-item " : "nav-item"}>
             <NavLink
               className="nav-link text-success"
               aria-current="page"
