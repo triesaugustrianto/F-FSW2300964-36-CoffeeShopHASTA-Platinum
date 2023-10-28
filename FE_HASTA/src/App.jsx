@@ -8,6 +8,7 @@ import {
   Login,
   Menu,
   NotFound,
+  RegisterAdmin,
   SignUp,
   UpdatePassword,
 } from "./pages/landing";
@@ -23,12 +24,7 @@ import {
   Users,
 } from "./pages/user";
 import { useEffect, useState } from "react";
-import { CreateProduct, EditProduct } from "./pages/admin";
-import Navigation from "./pages/admin/navigation/navigation.component";
-import OrderTable from "./pages/admin/order/order-table.component";
-import ProductTable from "./pages/admin/product/product-table.component";
-import { UserDsb } from "./pages/admin/User/user";
-import RegisterAdmin from "./pages/landing/RegisterAdmin";
+
 import { Header, NavbarCms, Side } from "./components";
 import {
   CheckedOrderCms,
@@ -81,27 +77,6 @@ function App() {
       </>
     );
   }
-
-  // //? =============== ROUTE PATH ADMIN ===================
-  // if (isLogin && token) {
-  //   return (
-  //     <>
-  //       {/* ROUTES LANDING DASHBOARD */}
-  //       <Routes>
-  //         <Route path="/dsb" element={<Navigation />}>
-  //           <Route path="product" element={<ProductTable />} />
-  //           <Route path="order" element={<OrderTable />} />
-  //           <Route path="user" element={<UserDsb />} />
-  //           <Route path="order" element={<OrderTable />} />
-  //           <Route path="user" element={<UserDsb />} />
-  //           <Route path="product/edit/:id" element={<EditProduct />} />
-  //           <Route path="product/create" element={<CreateProduct />} />
-  //           edit
-  //         </Route>
-  //       </Routes>
-  //     </>
-  //   );
-  // }
 
   //? =============== ROUTE PATH ADMIN ===================
   if (isLogin && token) {
