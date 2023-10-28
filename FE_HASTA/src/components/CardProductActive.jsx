@@ -8,7 +8,7 @@ import { active } from "../assets";
 
 export const CardProductActive = () => {
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/product-count`,
+    `http://app-citrapersada.net:2000/api/product-count`,
     fetcher
   );
   if (isLoading) return <Loading />;

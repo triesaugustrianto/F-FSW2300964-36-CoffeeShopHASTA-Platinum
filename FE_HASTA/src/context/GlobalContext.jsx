@@ -12,11 +12,11 @@ export const GlobalContext = ({ children }) => {
   const [query, setQuery] = useState("all");
   const [search, setSearch] = useState("");
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/productss`,
+    `http://app-citrapersada.net:2000/api/productss`,
     fetcher
   );
   const { data: order } = useSWR(
-    `http://localhost:2000/api/transaksi-newOrder`,
+    `http://app-citrapersada.net:2000/api/transaksi-newOrder`,
     fetcher
   );
 

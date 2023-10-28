@@ -18,7 +18,7 @@ function SignUp() {
   //send data
   const Submit = (data) => {
     axios
-      .post(`http://localhost:2000/api/users`, data)
+      .post(`http://app-citrapersada.net:2000/api/users`, data)
       .then((res) => {
         if (res.status === 201) {
           toast.success("Success Notification !", {

@@ -10,7 +10,7 @@ export const EditProductCms = () => {
   const navigate = useNavigate();
   //get data
   const { isLoading, error, data } = useSWR(
-    `http://localhost:2000/api/product/${id}`,
+    `http://app-citrapersada.net:2000/api/product/${id}`,
     fetcher
   );
   if (isLoading) return <Loading />;
@@ -31,7 +31,7 @@ export const EditProductCms = () => {
     });
 
     axios
-      .put(`http://localhost:2000/api/product/${id}`, product, {
+      .put(`http://app-citrapersada.net:2000/api/product/${id}`, product, {
         headers: {
           "Content-Type": "multipart/form-data",
           "Acess-Control-Allow-Origin": "*",

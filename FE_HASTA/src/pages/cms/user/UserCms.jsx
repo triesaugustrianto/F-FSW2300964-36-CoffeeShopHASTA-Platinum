@@ -8,7 +8,7 @@ export const UserCms = () => {
   const [search] = useContext(SearchConsum);
   const [active, setActive] = useState("all");
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/users?active=${active}`,
+    `http://app-citrapersada.net:2000/api/users?active=${active}`,
     fetcher
   );
   if (isLoading) return <Loading />;

@@ -18,7 +18,9 @@ export const ReportCms = () => {
   const [startDate, setStartDate] = useState(new Date());
   useEffect(() => {
     axios
-      .get(`http://localhost:2000/api/transaksi-report?month=${startDate}`)
+      .get(
+        `http://app-citrapersada.net:2000/api/transaksi-report?month=${startDate}`
+      )
       .then((res) => {
         const response = res.data.query;
         const coun = res.data.data;

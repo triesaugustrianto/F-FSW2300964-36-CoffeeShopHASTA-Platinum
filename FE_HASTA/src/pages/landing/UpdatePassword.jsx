@@ -34,7 +34,10 @@ export const UpdatePassword = () => {
   //send data
   const Submit = (data) => {
     axios
-      .put(`http://localhost:2000/api/users/update-password/${id}`, data)
+      .put(
+        `http://app-citrapersada.net:2000/api/users/update-password/${id}`,
+        data
+      )
       .then((res) => {
         if (res.status === 201) {
           toast.success("update password success !", {

@@ -21,7 +21,7 @@ export const NewOrderCms = () => {
   useEffect(() => {
     if (id != null) {
       axios
-        .get(`http://localhost:2000/api/transaksi/${id}`)
+        .get(`http://app-citrapersada.net:2000/api/transaksi/${id}`)
         .then((res) => {
           const response = res.data.query;
           setData(response);
@@ -38,14 +38,18 @@ export const NewOrderCms = () => {
 
   const Submits = (data) => {
     axios
-      .put(`http://localhost:2000/api/transaksi-confirm/${id}`, data, {
-        headers: {
-          "Content-Type": "application/json",
-          "Acess-Control-Allow-Origin": "*",
-          Accept: "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .put(
+        `http://app-citrapersada.net:2000/api/transaksi-confirm/${id}`,
+        data,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "Acess-Control-Allow-Origin": "*",
+            Accept: "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         if (res.status === 201) {
           toast.success("Checked Success !", {

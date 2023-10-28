@@ -12,7 +12,7 @@ export const ForgotPassword = () => {
   //send data
   const Submit = (data) => {
     axios
-      .post(`http://localhost:2000/api/users/reset-password`, data)
+      .post(`http://app-citrapersada.net:2000/api/users/reset-password`, data)
       .then((res) => {
         if (res.status === 201) {
           toast.success("reset password success !", {

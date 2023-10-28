@@ -19,7 +19,7 @@ export const CreateProductCms = () => {
       product[key] = value;
     });
     axios
-      .post(`http://localhost:2000/api/product`, product, {
+      .post(`http://app-citrapersada.net:2000/api/product`, product, {
         headers: {
           "Content-Type": "multipart/form-data",
           "Acess-Control-Allow-Origin": "*",
@@ -43,7 +43,6 @@ export const CreateProductCms = () => {
             position: toast.POSITION.TOP_CENTER,
           });
         }
-    
       });
   };
   return (

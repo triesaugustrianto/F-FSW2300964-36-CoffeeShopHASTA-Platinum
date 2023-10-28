@@ -7,7 +7,7 @@ import { Errors } from "./Errors";
 
 export const NewOrder = () => {
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/transaksi-totalnew`,
+    `http://app-citrapersada.net:2000/api/transaksi-totalnew`,
     fetcher
   );
   if (isLoading) return <Loading />;

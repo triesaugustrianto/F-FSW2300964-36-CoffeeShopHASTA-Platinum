@@ -7,7 +7,7 @@ import { Errors } from "./Errors";
 
 export const CradUserActive = () => {
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/user-count`,
+    `http://app-citrapersada.net:2000/api/user-count`,
     fetcher
   );
   if (isLoading) return <Loading />;

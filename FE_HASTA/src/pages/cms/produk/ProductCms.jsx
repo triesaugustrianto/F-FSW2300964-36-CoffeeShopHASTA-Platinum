@@ -15,7 +15,7 @@ export const ProductCms = () => {
   const [id, setId] = useState(0);
   const Submits = () => {
     axios
-      .delete(`http://localhost:2000/api/product/delete/${id}`)
+      .delete(`http://app-citrapersada.net:2000/api/product/delete/${id}`)
       .then((res) => {
         if (res.status === 200) {
           toast.success("Success delete product !", {

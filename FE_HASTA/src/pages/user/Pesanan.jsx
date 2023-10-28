@@ -11,7 +11,7 @@ export const Pesanan = () => {
   const { toPDF, targetRef } = usePDF({ filename: "receipt.pdf" });
   const [startDate, setStartDate] = useState(new Date());
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/transaksi-user?day=${startDate}`,
+    `http://app-citrapersada.net:2000/api/transaksi-user?day=${startDate}`,
     fetchToken
   );
   if (error) return <Errors />;

@@ -18,7 +18,7 @@ export const Order = () => {
   //send
   const Submit = (data) => {
     axios
-      .post(`http://localhost:2000/api/checkout`, data, {
+      .post(`http://app-citrapersada.net:2000/api/checkout`, data, {
         headers: {
           "Content-Type": "application/json",
           "Acess-Control-Allow-Origin": "*",
@@ -48,7 +48,7 @@ export const Order = () => {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:2000/api/products/${id}`)
+      .get(`http://app-citrapersada.net:2000/api/products/${id}`)
       .then((res) => {
         const response = res.data.query;
         setData(response);

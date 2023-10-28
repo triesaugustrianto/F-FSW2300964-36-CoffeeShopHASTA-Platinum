@@ -16,7 +16,7 @@ function Login() {
   //send data
   const Submit = (data) => {
     axios
-      .post(`http://localhost:2000/api/users-login`, data)
+      .post(`http://app-citrapersada.net:2000/api/users-login`, data)
       .then((res) => {
         if (res.status === 201) {
           sessionStorage.setItem("token", res.data.token);

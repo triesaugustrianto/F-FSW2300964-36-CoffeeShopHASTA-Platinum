@@ -8,7 +8,7 @@ import { format } from "../fetch/format";
 
 export const CardSales = () => {
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/transaksi-total`,
+    `http://app-citrapersada.net:2000/api/transaksi-total`,
     fetcher
   );
   if (isLoading) return <Loading />;

@@ -13,7 +13,7 @@ export const Checkout = () => {
   };
   const handleDelete = (id) => {
     axios
-      .delete(`http://localhost:2000/api/checkout/${id}`)
+      .delete(`http://app-citrapersada.net:2000/api/checkout/${id}`)
       .then((res) => {
         if (res.status === 200) {
           window.location.href = "/user/order/";
@@ -26,7 +26,7 @@ export const Checkout = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:2000/api/checkout-user`, {
+      .get(`http://app-citrapersada.net:2000/api/checkout-user`, {
         headers: {
           "Content-Type": "application/json",
           "Acess-Control-Allow-Origin": "*",
@@ -58,7 +58,7 @@ export const Checkout = () => {
   //submit pesanan
   const Submits = (data) => {
     axios
-      .post(`http://localhost:2000/api/transaksi`, data, {
+      .post(`http://app-citrapersada.net:2000/api/transaksi`, data, {
         headers: {
           "Content-Type": "application/json",
           "Acess-Control-Allow-Origin": "*",

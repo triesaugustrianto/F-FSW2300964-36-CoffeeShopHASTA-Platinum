@@ -11,7 +11,7 @@ import { format } from "../../fetch/format";
 export default function Menu() {
   const [id] = useContext(QueryConsum);
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/product-categori?id=${id}`,
+    `http://app-citrapersada.net:2000/api/product-categori?id=${id}`,
     fetcher
   );
   if (isLoading) return <Loading />;

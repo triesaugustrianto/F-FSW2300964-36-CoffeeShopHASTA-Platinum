@@ -23,7 +23,7 @@ export const CheckedOrderCms = () => {
   useEffect(() => {
     if (id != null) {
       axios
-        .get(`http://localhost:2000/api/transaksi/${id}`)
+        .get(`http://app-citrapersada.net:2000/api/transaksi/${id}`)
         .then((res) => {
           const response = res.data.query;
           setOrder(response);
@@ -39,7 +39,7 @@ export const CheckedOrderCms = () => {
   }, [id]);
 
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/transaksi-chekOrder`,
+    `http://app-citrapersada.net:2000/api/transaksi-chekOrder`,
     fetcher
   );
   if (isLoading) return <Loading />;
@@ -47,7 +47,7 @@ export const CheckedOrderCms = () => {
 
   const Submits = (data) => {
     axios
-      .put(`http://localhost:2000/api/transaksi-done/${id}`, data, {
+      .put(`http://app-citrapersada.net:2000/api/transaksi-done/${id}`, data, {
         headers: {
           "Content-Type": "application/json",
           "Acess-Control-Allow-Origin": "*",

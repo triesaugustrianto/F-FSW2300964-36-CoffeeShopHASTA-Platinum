@@ -9,7 +9,7 @@ export const Daftar = () => {
   const [category, setCategory] = useState("all");
   const navigate = useNavigate();
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/product?categories=${category}`,
+    `http://app-citrapersada.net:2000/api/product?categories=${category}`,
     fetcher
   );
 

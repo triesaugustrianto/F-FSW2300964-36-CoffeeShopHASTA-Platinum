@@ -16,7 +16,7 @@ export const AkunUser = () => {
   const { register, handleSubmit } = useForm();
 
   const { data, isLoading, error } = useSWR(
-    `http://localhost:2000/api/user`,
+    `http://app-citrapersada.net:2000/api/user`,
     fetchToken
   );
 
@@ -25,7 +25,7 @@ export const AkunUser = () => {
   //updateData
   const updateProfil = (data) => {
     axios
-      .put(`http://localhost:2000/api/users/update`, data, {
+      .put(`http://app-citrapersada.net:2000/api/users/update`, data, {
         headers: {
           "Content-Type": "application/json",
           "Acess-Control-Allow-Origin": "*",

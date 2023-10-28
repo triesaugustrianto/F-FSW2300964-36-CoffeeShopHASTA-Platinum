@@ -9,7 +9,7 @@ export const ConfimAkun = () => {
   const { handleSubmit } = useForm();
   const Submit = (data) => {
     axios
-      .put(`http://localhost:2000/api/users/confirm/${id}`, data)
+      .put(`http://app-citrapersada.net:2000/api/users/confirm/${id}`, data)
       .then((res) => {
         if (res.status === 201) {
           toast.success("Success confirm !", {
