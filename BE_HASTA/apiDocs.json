@@ -1,138 +1,341 @@
 {
-    "openapi" : "3.1.0",
-    "info": {
-        "title" :"API HASTA Coffee Shop",
-        "description": "API Documentation",
-        "version": "1.0.0"
-    },
-    "server" : {
-        "url": "http://localhost:2000",
-        "description": "localhost"
-    },
-    "paths": {
-        "/api/products": {
-          "get": {
-            "tags": ["products"],
-            "summary": "Get all products in system",
-            "responses": {
-              "200": {
-                "description": "OK",
+  "openapi": "3.1.0",
+  "info": {
+    "title": "API HASTA Coffee Shop",
+    "description": "API Documentation",
+    "version": "1.0.0"
+  },
+  "server": {
+    "url": "http://app-citrapersada.net:2000",
+    "description": "localhost"
+  },
+  "paths": {
+    "/api/products": {
+      "get": {
+        "tags": ["products"],
+        "summary": "Get all products in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/products"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["products"],
+        "description": "Create new Products in system",
+        "parameters": [
+          {
+            "name": "products",
+            "in": "body",
+            "description": "products that we want to create",
+            "schema": {
+              "$ref": "#/definitions/products"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "New products is created",
+            "content": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/definitions/products"
                 }
               }
             }
           },
-          "post": {
-            "tags": ["products"],
-            "description": "Create new Products in system",
-            "parameters": [
-              {
-                "name": "products",
-                "in": "body",
-                "description": "products that we want to create",
-                "schema": {
-                  "$ref": "#/definitions/products"
-                }
-              }
-            ],
-            "produces": ["application/json"],
-            "responses": {
-              "200": {
-                "description": "New products is created",
-                "schema": {
-                  "$ref": "#/definitions/products"
-                }
-              }
-            }
+          "500": {
+            "description": "server error"
           }
-        },
-        "/api/products/{id}": {
-            "parameters": [
-              {
-                "name": "id",
-                "in": "path",
-                "required": true,
-                "description": "ID of product that we want to find",
-                "type": "integer"
-              }
-            ],
-            "put": {
-              "summary": "Update product with give ID",
-              "tags": ["products"],
-              "parameters": [
-                {
-                  "name": "product",
-                  "in": "body",
-                  "description": "Product with new values of properties",
-                  "schema": {
-                    "$ref": "#/definitions/updateProducts"
-                  }
-                }
-              ],
-              "responses": {
-                "200": {
-                  "description": "Products is updated",
-                  "schema": {
-                    "$ref": "#/definitions/Products"
-                  }
-                }
-              }
-            }
-          }
+        }
+      }
     },
-      "definitions": {
-        "products": {
-          "properties": {
-            "id": {
-                "type": "integer"
+    "/api/products/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "integer"
+          },
+          "description": "ID of product that we want to find",
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "summary": "select by id",
+        "tags": ["products"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
             },
+            "description": "ID of product that we want to find",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "get products by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/products"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update product with give ID",
+        "tags": ["products"],
+        "parameters": [
+          {
+            "name": "product",
+            "in": "body",
+            "description": "Product with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/updateProducts"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Products is updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/definitions/products"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "select by id",
+        "tags": ["products"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID of product that we want to find",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "get products by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": "product has deleted"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/users": {
+      "get": {
+        "tags": ["users"],
+        "summary": "Get all products in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/users"
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["users"],
+        "description": "Create new users in system",
+        "parameters": [
+          {
+            "name": "users",
+            "in": "body",
+            "description": "user that we want to create",
+            "schema": {
+              "$ref": "#/definitions/users"
+            }
+          }
+        ],
+        "produces": ["application/json"],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/users"
+            }
+          }
+        }
+      }
+    },
+    "/api/user/{id}": {
+      "parameters": [
+        {
+          "name": "id",
+          "in": "path",
+          "required": true,
+          "schema": {
+            "type": "string"
+          },
+          "description": "ID of users that we want to find",
+          "type": "integer"
+        }
+      ],
+      "get": {
+        "summary": "select by id",
+        "tags": ["users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of users that we want to find",
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/users"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "select by id",
+        "tags": ["users"],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID of user that we want to find",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "get users by ID",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "data": "product has deleted"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "products": {
+      "properties": {
+        "query": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 10
+              },
               "name": {
-                  "type": "string"
+                "type": "string",
+                "example": "kopi"
               },
               "price": {
-                  "type": "integer"
+                "type": "integer",
+                "example": 10000
               },
               "stock": {
-                  "type": "integer"
+                "type": "integer",
+                "exapmle": 15
               },
               "category": {
-                  "type": "string"
+                "type": "string",
+                "example": "kopi"
               },
               "image": {
-                  "type": "string"
+                "type": "string",
+                "example": "www.image"
               },
               "description": {
-                  "type": "string"
+                "type": "string",
+                "example": "ini description"
               }
-          }
-        },
-        "Users": {
-          "type": "array",
-          "$ref": "#/definitions/products"
-        },
-        "updateProducts": {
-            "properties": {
-                "name": {
-                    "type": "string"
-                },
-                "price": {
-                    "type": "integer"
-                },
-                "stock": {
-                    "type": "integer"
-                },
-                "category": {
-                    "type": "string"
-                },
-                "image": {
-                    "type": "string"
-                },
-                "description": {
-                    "type": "string"
-                }
             }
           }
+        }
+      }
+    },
+    "Users": {
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "id": {
+                "type": "integer",
+                "example": 10
+              },
+              "name": {
+                "type": "string",
+                "example": "kopi"
+              },
+              "phone": {
+                "type": "integer",
+                "example": 10000
+              },
+              "email": {
+                "type": "string",
+                "exapmle": "example@gmail.com"
+              },
+              "password": {
+                "type": "string",
+                "example": "password"
+              },
+              "address": {
+                "type": "string",
+                "example": "ini addres"
+              }
+            }
+          }
+        }
+      }
     }
+  }
 }
-
