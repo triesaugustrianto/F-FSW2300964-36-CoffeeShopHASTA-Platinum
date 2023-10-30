@@ -13,6 +13,8 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import { Check2All, Check2Circle } from "react-bootstrap-icons";
 import axios from "axios";
+import { format } from "../../../fetch/format";
+import moment from "moment";
 export const DoneOrderCms = () => {
   const token = sessionStorage.getItem("token");
   const [id, setId] = useState(null);
@@ -79,6 +81,7 @@ export const DoneOrderCms = () => {
         }
       });
   };
+
   return (
     <div className="container-fluid mt-3">
       <ToastContainer />
@@ -88,11 +91,11 @@ export const DoneOrderCms = () => {
           <table className="table table-bordered" style={{ fontSize: "14px" }}>
             <TheadOrder
               th1={"ID"}
-              th2={"Name"}
-              th3={"Product"}
-              th4={"Quantity"}
-              th5={"Note"}
-              th6={"Status"}
+              th2={"Date"}
+              th3={"Amount"}
+              th4={"Checked"}
+              th5={"Status"}
+              th6={"Detail"}
               th7={"Action"}
             />
             {data &&
@@ -101,34 +104,9 @@ export const DoneOrderCms = () => {
                   <tbody key={e.id}>
                     <tr>
                       <td>HST- {e.id}</td>
-                      <td>{e.user.map((e) => e.name)}</td>
-                      <td>
-                        {e.transaksi.map((t) => {
-                          return (
-                            <tr key={t.id}>
-                              <td>{t.name}</td>
-                            </tr>
-                          );
-                        })}
-                      </td>
-                      <td>
-                        {e.transaksi.map((t) => {
-                          return (
-                            <tr key={t.id}>
-                              <td>{t.qty}</td>
-                            </tr>
-                          );
-                        })}
-                      </td>
-                      <td>
-                        {e.transaksi.map((t) => {
-                          return (
-                            <tr key={t.id}>
-                              <td>{t.keterangan}</td>
-                            </tr>
-                          );
-                        })}
-                      </td>
+                      <td>{moment(e.createdAt).format("ll")}</td>
+                      <td>{format(e.uang)}</td>
+                      <td>{e.checked === null ? "Admin" : e.checked}</td>
                       <td
                         className={
                           e.isPickup
@@ -138,6 +116,16 @@ export const DoneOrderCms = () => {
                       >
                         {e.isPickup ? "Done" : "Pickup"}
                       </td>
+                      <td>
+                        <p
+                          data-bs-toggle="modal"
+                          data-bs-target="#seeDone"
+                          onClick={() => handleCheck(e.id)}
+                        >
+                          <a className="link-offset-3">Show more</a>
+                        </p>
+                      </td>
+
                       <td className="text-center">
                         <button
                           className="btn text-success fw-bold "
@@ -182,6 +170,33 @@ export const DoneOrderCms = () => {
                 );
               })
             }
+          />
+          <Modals
+            id={"seeDone"}
+            title={"Detail transaksi"}
+            content={order.map((e) => {
+              return (
+                <div>
+                  <h6 className="fw-bold">
+                    Name : {e.user.map((u) => u.name)}
+                  </h6>
+                  {e.transaksi.map((i) => {
+                    return (
+                      <div>
+                        <div
+                          key={i.id}
+                          className="d-flex justify-content-between"
+                        >
+                          <span>{i.name}</span>
+                          <span>{i.qty}</span>
+                          <span>{i.keterangan}</span>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              );
+            })}
           />
         </div>
       ) : (

@@ -1,15 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import useSWR from "swr";
 import { fetchToken } from "../../fetch";
-import { Errors, Loading, Nulls, Struk } from "../../components";
+import { Errors, Loading, Modals, Nulls, Struk } from "../../components";
 import moment from "moment/moment";
 import { format } from "../../fetch/format";
 import DatePicker from "react-datepicker";
 import { usePDF } from "react-to-pdf";
-
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
 export const Pesanan = () => {
   const { toPDF, targetRef } = usePDF({ filename: "receipt.pdf" });
   const [startDate, setStartDate] = useState(new Date());
+  const [detail, setDetail] = useState([]);
+  const [id, setId] = useState(null);
+  useEffect(() => {
+    if (id != null) {
+      axios
+        .get(`http://app-citrapersada.net:2000/api/transaksi/${id}`)
+        .then((res) => {
+          const response = res.data.query;
+          setDetail(response);
+        })
+        .catch((err) => {
+          if (err.response.status === 500) {
+            toast.error("Error Notification !", {
+              position: toast.POSITION.TOP_CENTER,
+            });
+          }
+        });
+    }
+  }, [id]);
   const { data, isLoading, error } = useSWR(
     `http://app-citrapersada.net:2000/api/transaksi-user?day=${startDate}`,
     fetchToken
@@ -21,9 +41,10 @@ export const Pesanan = () => {
     window.location.href = "/user/menu";
     sessionStorage.setItem("nav", "2");
   };
-  console.log(data);
+
   return (
     <div className="container-fluid">
+      <ToastContainer />
       <div className="container d-flex flex-column gap-2 mb-5">
         <label htmlFor="">Periode</label>
         <DatePicker
@@ -60,23 +81,14 @@ export const Pesanan = () => {
                         "MM-DD-YY"
                       )}`}
                       cs={e.checked}
-                      produk={e.transaksi.map((u) => {
-                        return (
-                          <div
-                            key={u.id}
-                            className="d-flex justify-content-between "
-                          >
-                            <span>{u.name}</span>
-                            <span>{u.qty}</span>
-                            <span>{u.keterangan}</span>
-                          </div>
-                        );
-                      })}
                       to={format(e.totals)}
                       cash={format(e.uang)}
                       cange={format(e.kembalian)}
+                      show={`#HST${e.id}`}
+                      click={() => setId(e.id)}
                     />
                   </div>
+
                   <span className="position-absolute bottom-0 start-0  text-white  z-3">
                     {e.isDone ? (
                       <button
@@ -94,6 +106,21 @@ export const Pesanan = () => {
       ) : (
         <Nulls ket="Opps data tidak tersedia" click={handlePesan} />
       )}
+      <Modals
+        id={`detail`}
+        title={"Detail product"}
+        content={detail.map((d) => {
+          return d.transaksi.map((i) => {
+            return (
+              <div key={i.id} className="d-flex justify-content-between">
+                <span>{i.name}</span>
+                <span>{i.qty}</span>
+                <span>{i.keterangan}</span>
+              </div>
+            );
+          });
+        })}
+      />
     </div>
   );
 };

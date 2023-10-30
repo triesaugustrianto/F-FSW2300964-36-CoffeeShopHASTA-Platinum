@@ -13,6 +13,7 @@ import {
 import { ToastContainer, toast } from "react-toastify";
 import { Check2Circle } from "react-bootstrap-icons";
 import axios from "axios";
+import { format } from "../../../fetch/format";
 export const CheckedOrderCms = () => {
   const token = sessionStorage.getItem("token");
   const [id, setId] = useState(null);
@@ -87,8 +88,8 @@ export const CheckedOrderCms = () => {
               th1={"ID"}
               th2={"Name"}
               th3={"Product"}
-              th4={"Quantity"}
-              th5={"Note"}
+              th4={"Amount"}
+              th5={"Checked"}
               th6={"Status"}
               th7={"Action"}
             />
@@ -100,32 +101,16 @@ export const CheckedOrderCms = () => {
                       <td>HST- {e.id}</td>
                       <td>{e.user.map((e) => e.name)}</td>
                       <td>
-                        {e.transaksi.map((t) => {
-                          return (
-                            <tr key={t.id}>
-                              <td>{t.name}</td>
-                            </tr>
-                          );
-                        })}
+                        <p
+                          data-bs-toggle="modal"
+                          data-bs-target="#seeCheck"
+                          onClick={() => handleCheck(e.id)}
+                        >
+                          <a className="link-offset-3">Show more</a>
+                        </p>
                       </td>
-                      <td>
-                        {e.transaksi.map((t) => {
-                          return (
-                            <tr key={t.id}>
-                              <td>{t.qty}</td>
-                            </tr>
-                          );
-                        })}
-                      </td>
-                      <td>
-                        {e.transaksi.map((t) => {
-                          return (
-                            <tr key={t.id}>
-                              <td>{t.keterangan}</td>
-                            </tr>
-                          );
-                        })}
-                      </td>
+                      <td>{format(e.uang)}</td>
+                      <td>{e.checked === null ? "Admin" : e.checked}</td>
                       <td
                         className={
                           e.isDone
@@ -178,6 +163,21 @@ export const CheckedOrderCms = () => {
                 );
               })
             }
+          />
+          <Modals
+            id={"seeCheck"}
+            title={"Detail product"}
+            content={order.map((e) => {
+              return e.transaksi.map((i) => {
+                return (
+                  <div key={i.id} className="d-flex justify-content-between">
+                    <span>{i.name}</span>
+                    <span>{i.qty}</span>
+                    <span>{i.keterangan}</span>
+                  </div>
+                );
+              });
+            })}
           />
         </div>
       ) : (

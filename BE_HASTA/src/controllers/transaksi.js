@@ -292,7 +292,7 @@ const getDetailTransaksi = async (req = request, res = response) => {
   }
 };
 
-//get order by user
+//TODO           ====================================== get order by user =======================================
 const getOrderUser = async (req = request, res = response) => {
   try {
     const { user_id } = await req.body;
@@ -308,15 +308,11 @@ const getOrderUser = async (req = request, res = response) => {
         .andWhere("createdAt", "<", new Date(end))
         .then((data) => {
           if (data.length) {
-            return trx("items")
-              .where("id_transaksi", data[0].id)
-              .then((result) => {
-                const struk = data.map((item) => ({
-                  ...item,
-                  transaksi: result,
-                }));
-                return struk;
-              });
+            const struk = data.map((item, idx) => ({
+              ...item,
+              transaksi: [],
+            }));
+            return struk;
           }
         });
     });
